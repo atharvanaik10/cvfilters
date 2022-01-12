@@ -11,8 +11,12 @@ def glasses():
         "/usr/share/opencv4/haarcascades/haarcascade_eye.xml"
     )
     # Create the Camera instance
+<<<<<<< Updated upstream
     camera = nano.Camera(flip=2)
 
+=======
+    camera = nano.Camera(flip=2, width=1280, height=720, fps=30)
+>>>>>>> Stashed changes
     print('CSI Camera status: ', camera.isReady())
     while camera.isReady():
         try:
