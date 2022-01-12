@@ -3,7 +3,7 @@ import nanocamera as nano
 
 def glasses():
 
-    glass = cv2.imread(glasses_overlay.png)
+    glass = cv2.imread('glasses_overlay.png')
     face_cascade = cv2.CascadeClassifier(
         "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
     )
@@ -29,8 +29,9 @@ def glasses():
                 roi_gray = gray[y: y + h, x: x + w]
                 roi_color = frame[y: y + h, x: x + w]
                 eyes = eye_cascade.detectMultiScale(roi_gray)
-                for (ex, ey, ew, eh) in eyes[0]:
+                for (ex, ey, ew, eh) in eyes:
                     #try to put glasses instead of rectangle
+                    glass2 = cv2.resize(glass, dsize=(ew, eh))
                     frame[ex + ew, ey + eh] = glass
                     # cv2.rectangle(
                     #     roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2
