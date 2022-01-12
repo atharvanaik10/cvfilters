@@ -2,6 +2,8 @@ import cv2
 import nanocamera as nano
 
 def glasses():
+
+    glass = cv2.imread(glasses_overlay.png)
     face_cascade = cv2.CascadeClassifier(
         "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
     )
@@ -10,6 +12,7 @@ def glasses():
     )
     # Create the Camera instance
     camera = nano.Camera(flip=2)
+
     print('CSI Camera status: ', camera.isReady())
     while camera.isReady():
         try:
@@ -25,10 +28,12 @@ def glasses():
                 roi_gray = gray[y: y + h, x: x + w]
                 roi_color = frame[y: y + h, x: x + w]
                 eyes = eye_cascade.detectMultiScale(roi_gray)
-                for (ex, ey, ew, eh) in eyes:
-                    cv2.rectangle(
-                        roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2
-                    )
+                for (ex, ey, ew, eh) in eyes[0]:
+                    #try to put glasses instead of rectangle
+                    frame[ex + ew, ey + eh] = glass
+                    # cv2.rectangle(
+                    #     roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2
+                    # )
             # display the frame
             cv2.imshow("Filter", frame)
             if cv2.waitKey(25) & 0xFF == ord('q'):
