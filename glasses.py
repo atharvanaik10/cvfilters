@@ -32,7 +32,7 @@ def glasses():
                 for (ex, ey, ew, eh) in eyes:
                     #try to put glasses instead of rectangle
                     glass2 = cv2.resize(glass, dsize=(ew, eh))
-                    frame[ex + ew, ey + eh] = glass
+                    frame[ex + ew, ey + eh] = glass2
                     # cv2.rectangle(
                     #     roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2
                     # )
