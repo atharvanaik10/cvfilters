@@ -36,7 +36,9 @@ def glasses():
                 eyes = eye_cascade.detectMultiScale(roi_gray)
                 for (ex, ey, ew, eh) in eyes:
                     #try to put glasses instead of rectangle
-                    glass2 = cv2.resize(glass, dsize=(ew*2, eh))
+                    glass2 = cv2.resize(glass, dsize=(ew, eh))
+                    img2 = frame[ex:ex+ew, ey:ey+eh]
+                    result = cv2.addWeighted(glass2, )
                     # frame[ey:ey + eh, ex:ex + (ew*2)] = glass2
                     frame[0:eh, 0:ew*2] = glass2
                     cv2.rectangle(
