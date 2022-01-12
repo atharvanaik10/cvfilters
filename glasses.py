@@ -9,7 +9,7 @@ def glasses():
         "/usr/share/opencv4/haarcascades/haarcascade_eye.xml"
     )
     # Create the Camera instance
-    camera = nano.Camera(flip=0, width=640, height=480, fps=30)
+    camera = nano.Camera(flip=1)
     print('CSI Camera status: ', camera.isReady())
     while camera.isReady():
         try:
